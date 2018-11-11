@@ -13,5 +13,5 @@ deploy:
     bucket: 'pvc-pvd-example-2'
     on:
       branch: master
-    local_dir: public
+    local_dir: dist
     skip_cleanup: true
