@@ -8,16 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@cityofphiladelphia/phila-vue-comps": "https://github.com/CityOfPhiladelphia/phila-vue-comps#a6d7b197411d00de00cdb22f810274aabb1fb849",
-    "@cityofphiladelphia/phila-vue-datafetch": "https://github.com/CityOfPhiladelphia/phila-vue-datafetch#68c02734c83c736be14b6ab08bdb3ffe2e3a405c",
+    "@philly/vue-comps": "^1.0.33",
+    "@philly/vue-datafetch": "^0.0.20",
     "@fortawesome/fontawesome-pro": "^5.5.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/vue-fontawesome": "^0.1.2",
     "accounting": "^0.4.1",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "moment": "^2.22.2",
     "phila-standards": "^1.0.2",
-    "vue": "^2.5.17",
+    "vue": "^2.6.10",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
