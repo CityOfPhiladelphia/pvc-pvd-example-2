@@ -3,10 +3,16 @@
     <header class="site-header app group">
       <div class="row expanded">
         <div class="columns">
-          <a href="//beta.phila.gov" class="logo">
-            <img src="https://standards.phila.gov/img/logo/city-of-philadelphia-yellow-white.png" alt="City of Philadelphia">
+          <a
+            href="//beta.phila.gov"
+            class="logo"
+          >
+            <img
+              src="https://standards.phila.gov/img/logo/city-of-philadelphia-yellow-white.png"
+              alt="City of Philadelphia"
+            >
           </a>
-          <div class="app-divide"></div>
+          <div class="app-divide" />
           <div class="page-title-container">
             <a href="#/">
               <h1 class="page-title">Input Example App</h1>
@@ -17,12 +23,11 @@
     </header>
 
     <div id="components-root">
-
       <external-link />
 
       <address-input
         :process="'non-mapboard'"
-        :widthFromConfig="500"
+        :width-from-config="500"
         :placeholder="'testing address input'"
       />
       <br>
@@ -31,7 +36,7 @@
 
       <configurable-input
         :process="'non-mapboard'"
-        :widthFromConfig="700"
+        :width-from-config="700"
         :placeholder="'testing configurable input'"
       />
       <br>
@@ -57,7 +62,9 @@
       />
 
 
-      <div class="margin-sides-20 component-label">vertical-table:</div>
+      <div class="margin-sides-20 component-label">
+        vertical-table:
+      </div>
       <vertical-table
         class="margin-20 margin-bottom-60 medium-8"
         :slots="{
@@ -95,7 +102,9 @@
         }"
       />
 
-      <div class="margin-sides-20 component-label">horizontal-table:</div>
+      <div class="margin-sides-20 component-label">
+        horizontal-table:
+      </div>
 
       <horizontal-table
         class="margin-20 medium-10"
@@ -106,7 +115,7 @@
             return data;
           },
         }"
-        :options="this.ownerOptions"
+        :options="ownerOptions"
       />
 
       <horizontal-table
@@ -165,7 +174,7 @@
           externalLink: {
             action: function(count) {
               return 'See ' + count + ' older permits at L&I Property History';
-              },
+            },
             name: 'L&I Property History',
             href: function(state) {
               var address = state.geocode.data.properties.street_address;
@@ -230,80 +239,76 @@
           }
         }"
       />
-
-
     </div>
   </div>
 </template>
 
 <script>
-  import axios from 'axios';
-  import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
-  const VerticalTable = philaVueComps.VerticalTable;
-  const HorizontalTable = philaVueComps.HorizontalTable;
-  const AddressInput = philaVueComps.AddressInput;
-  const ConfigurableInput = philaVueComps.ConfigurableInput;
-  const Callout = philaVueComps.Callout;
-  const Badge = philaVueComps.Badge;
-  const BadgeCustom = philaVueComps.BadgeCustom;
-  const CollectionSummary = philaVueComps.CollectionSummary;
-  const ExternalLink = philaVueComps.ExternalLink;
+import VerticalTable from '@philly/vue-comps/src/components/VerticalTable.vue';
+import HorizontalTable from '@philly/vue-comps/src/components/HorizontalTable.vue';
+import AddressInput from '@philly/vue-comps/src/components/AddressInput.vue';
+import ConfigurableInput from '@philly/vue-comps/src/components/ConfigurableInput.vue';
+// import Callout from '@philly/vue-comps/src/components/Callout.vue';
+import Badge from '@philly/vue-comps/src/components/Badge.vue';
+// import BadgeCustom from '@philly/vue-comps/src/components/BadgeCustom.vue';
+// import CollectionSummary from '@philly/vue-comps/src/components/CollectionSummary.vue';
+import ExternalLink from '@philly/vue-comps/src/components/ExternalLink.vue';
 
-  export default {
-    components: {
-      VerticalTable,
-      HorizontalTable,
-      AddressInput,
-      ConfigurableInput,
-      Callout,
-      Badge,
-      BadgeCustom,
-      CollectionSummary,
-      ExternalLink,
-    },
-    computed: {
-      ownerOptions() {
-        const options = {
-          id: 'ownerProperties',
-          /* dataSources: ['liPermits'], */
-          /* limit: 5, */
-          fields: [
-            {
-              label: 'Owner',
-              value: function(state, item){
-                return item.properties.opa_owners.toString();
-              },
-              /* nullValue: 'no date available', */
+export default {
+  components: {
+    VerticalTable,
+    HorizontalTable,
+    AddressInput,
+    ConfigurableInput,
+    // Callout,
+    Badge,
+    // BadgeCustom,
+    // CollectionSummary,
+    ExternalLink,
+  },
+  computed: {
+    ownerOptions() {
+      const options = {
+        id: 'ownerProperties',
+        /* dataSources: ['liPermits'], */
+        /* limit: 5, */
+        fields: [
+          {
+            label: 'Owner',
+            value: function(state, item){
+              return item.properties.opa_owners.toString();
             },
-            {
-              label: 'Street Address',
-              value: function(state, item, controller) {
-                const test = controller.test
-                /* controller.test(); */
-                return `<a target='_blank' href='https://atlas.phila.gov/#/`+item.properties.street_address+`/property'>`+item.properties.street_address+` <i class='fa fa-external-link'></i></a>`
-                // return '<a href=# onclick="'+test+'()">'+item.properties.street_address+' <i class="fa fa-external-link"></i></a>'
-              }
+            /* nullValue: 'no date available', */
+          },
+          {
+            label: 'Street Address',
+            value: function(state, item, controller) {
+              const test = controller.test;
+              /* controller.test(); */
+              return `<a target='_blank' href='https://atlas.phila.gov/#/`+item.properties.street_address+`/property'>`+item.properties.street_address+` <i class='fa fa-external-link'></i></a>`;
+              // return '<a href=# onclick="'+test+'()">'+item.properties.street_address+' <i class="fa fa-external-link"></i></a>'
             },
-            {
-              label: 'Description',
-              value: function(state, item){
-                /* return item.permitdescription */
-              }
+          },
+          {
+            label: 'Description',
+            value: function(state, item){
+              /* return item.permitdescription */
             },
-            {
-              label: 'Status',
-              value: function(state, item){
-                /* return item.status */
-              }
+          },
+          {
+            label: 'Status',
+            value: function(state, item){
+              /* return item.status */
             },
-          ],
-          /* sort: {
+          },
+        ],
+        /* sort: {
             getValue: function(item) {
               return item.permitissuedate;
             },
             order: 'desc'
           }, */
-          /* externalLink: {
+        /* externalLink: {
             action: function(count) {
               return 'See ' + count + ' older permits at L&I Property History';
               },
@@ -314,11 +319,11 @@
               return 'http://li.phila.gov/#summary?address=' + addressEncoded;
             }
           } */
-        }
-        return options;
-      }
-    }
-  };
+      };
+      return options;
+    },
+  },
+};
 </script>
 
 <style scoped>

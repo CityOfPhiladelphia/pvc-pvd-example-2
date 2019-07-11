@@ -1,11 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import mergeDeep from './util/merge-deep';
-import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
-console.log('philaVueComps:', philaVueComps);
-const pvcStore = philaVueComps.pvcStore
-import philaVueDatafetch from '@cityofphiladelphia/phila-vue-datafetch'
-const pvdStore = philaVueDatafetch.pvdStore
+import pvdStore from '@philly/vue-datafetch/src/controller/store.js';
+import pvcStore from '@philly/vue-comps/src/store.js';
 
 // when you load vuex from a script tag this seems to happen automatically
 Vue.use(Vuex);
@@ -31,8 +28,8 @@ function createStore(config) {
       setAddressEntered(state, payload) {
         state.addressEntered = payload;
       },
-    }
-  }
+    },
+  };
 
   // let mergeStore = mb;
   let mergeStore = mergeDeep(pvcStore, pvdStore.store);
@@ -44,7 +41,7 @@ function createStore(config) {
   return new Vuex.Store({
     state: mergeStore.state,
     getters: mergeStore.getters,
-    mutations: mergeStore.mutations
+    mutations: mergeStore.mutations,
   });
 }
 

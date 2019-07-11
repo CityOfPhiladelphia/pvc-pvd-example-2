@@ -14,17 +14,14 @@ import createStore from './store';
 import configMixin from './util/config-mixin';
 import App from './App.vue';
 import mergeDeep from './util/merge-deep';
-import config from './config.js'
+import config from './config.js';
 
 import '@fortawesome/fontawesome-pro/js/all';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import '../node_modules/phila-standards/dist/css/phila-app.min.css';
 import './styles.css';
 
-console.log('test')
-import philaVueComps from '@cityofphiladelphia/phila-vue-comps';
-import philaVueDatafetch from '@cityofphiladelphia/phila-vue-datafetch';
-const controllerMixin = philaVueDatafetch.controllerMixin;
+import controllerMixin from '@philly/vue-datafetch/src/controller/index.js';
 
 const clientConfig = config;
 const baseConfigUrl = config.baseConfig;
@@ -38,12 +35,12 @@ function initVue(config) {
   // mix in controller
   Vue.use(controllerMixin, { config, store });
 
-  Vue.component('font-awesome-icon', FontAwesomeIcon)
+  Vue.component('font-awesome-icon', FontAwesomeIcon);
   // mount main vue
   const vm = new Vue({
     el: '#vue-app',
     render: h => h(App),
-    store
+    store,
   });
 }
 
