@@ -16,12 +16,17 @@ import App from './App.vue';
 import mergeDeep from './util/merge-deep';
 import config from './config.js';
 
-import '@fortawesome/fontawesome-pro/js/all';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import * as faComps from '@philly/vue-comps/src/fa.js';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons/faInfoCircle';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons/faExternalLinkAlt';
+library.add(faInfoCircle, faExternalLinkAlt);
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 import '../node_modules/phila-standards/dist/css/phila-app.min.css';
 import './styles.css';
 
-import controllerMixin from '@philly/vue-datafetch/src/controller/index.js';
+import controllerMixin from 'pvd/src/main.js';
 
 const clientConfig = config;
 const baseConfigUrl = config.baseConfig;

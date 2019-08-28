@@ -15,7 +15,7 @@
           <div class="app-divide" />
           <div class="page-title-container">
             <a href="#/">
-              <h1 class="page-title">Input Example App</h1>
+              <h1 class="page-title">PVC PVD Example App</h1>
             </a>
           </div>
         </div>
@@ -34,19 +34,20 @@
       <br>
       <br>
 
-      <configurable-input
+      <!-- <configurable-input
         :process="'non-mapboard'"
         :width-from-config="700"
         :placeholder="'testing configurable input'"
       />
       <br>
       <br>
-      <br>
+      <br> -->
 
 
       <badge
         :slots="{
           title: 'Address or Intersection Found',
+          titleBackground: '#58c04d',
           value: function(state) {
             if (state.geocode.data) {
               if (state.geocode.data.ais_feature_type === 'intersection') {
@@ -247,7 +248,7 @@
 import VerticalTable from '@philly/vue-comps/src/components/VerticalTable.vue';
 import HorizontalTable from '@philly/vue-comps/src/components/HorizontalTable.vue';
 import AddressInput from '@philly/vue-comps/src/components/AddressInput.vue';
-import ConfigurableInput from '@philly/vue-comps/src/components/ConfigurableInput.vue';
+// import ConfigurableInput from '@philly/vue-comps/src/components/ConfigurableInput.vue';
 // import Callout from '@philly/vue-comps/src/components/Callout.vue';
 import Badge from '@philly/vue-comps/src/components/Badge.vue';
 // import BadgeCustom from '@philly/vue-comps/src/components/BadgeCustom.vue';
@@ -259,7 +260,7 @@ export default {
     VerticalTable,
     HorizontalTable,
     AddressInput,
-    ConfigurableInput,
+    // ConfigurableInput,
     // Callout,
     Badge,
     // BadgeCustom,
